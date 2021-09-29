@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Dashboard') }}
+      {{ __('Verify Bank Account Name') }}
     </h2>
   </x-slot>
 
@@ -9,19 +9,19 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <h3 class="font-semibold text-xl text-gray-800 leading-tight">Verify Bank Account Name</h3>
+          <h3 class="font-semibold text-xl text-gray-800 leading-tight"></h3>
 
           @if (session('message'))
-            <div>Message: {{session('message')}}</div>
+            <div class="font-semibold text-xl text-gray-800 leading-tight">Message: {{session('message')}}</div>
           @endif
 
           @if (session('user_account_name'))
-            <div>
+            <div class="font-semibold text-xl text-gray-800 leading-tight">
               Bank Account Name: {{session('user_account_name')}}
             </div>
           @endif
         
-          <form action="{{ route('verify') }}" method="POST">
+          <form action="{{ route('verify') }}" method="POST" onsubmit="loadSpinner()">
             @csrf
             <div>
               <label for="user_account_name">Bank Account Name: </label>
@@ -42,7 +42,9 @@
               </select>
             </div>
             
-            <x-button class="ml-3">
+            <img id="processing" style="display: none;" src="{{url('images/spinning.gif')}}" height="10%" width="10%" alt="loading...">
+            
+            <x-button id="verify">
               {{ __('Verify') }}
             </x-button>
           </form>
@@ -58,4 +60,17 @@
       </div>
     </div>
   </div>
+  
+  <script>
+    function loadSpinner() {
+      let processing_img = document.getElementById('processing');
+      let verify_btn = document.getElementById("verify");
+      if (verify_btn.style.display === "none") {
+        verify_btn.style.display = "block";
+      } else {
+        verify_btn.style.display = "none";
+        processing_img.style.display = "block";
+      }
+    }
+  </script>
 </x-app-layout>
