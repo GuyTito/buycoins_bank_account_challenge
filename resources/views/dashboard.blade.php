@@ -41,9 +41,7 @@
                 <option value="032">Union Bank</option>
               </select>
             </div>
-            {{-- <input type="checkbox" name="is_verified" id="is_verified" value="1" {{ old('is_verified') ? 'checked="checked"' : ''}}> --}}
-
-            {{-- <button type="submit">Verify</button> --}}
+            
             <x-button class="ml-3">
               {{ __('Verify') }}
             </x-button>
