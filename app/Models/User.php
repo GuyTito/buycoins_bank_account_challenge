@@ -17,7 +17,7 @@ class User extends Authenticatable
    *
    * @var string[]
    */
-  protected $fillable = ['name', 'email', 'password', 'user_account_name', 'is_verified',];
+  protected $fillable = ['name', 'email', 'password',];
 
   /**
    * The attributes that should be hidden for serialization.
@@ -37,4 +37,9 @@ class User extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  public function user_bank_detail()
+  {
+    return $this->hasOne(UserBankDetail::class);
+  }
 }

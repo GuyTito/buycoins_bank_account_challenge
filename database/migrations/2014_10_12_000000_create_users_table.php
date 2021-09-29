@@ -17,12 +17,21 @@ class CreateUsersTable extends Migration
       $table->id();
       $table->string('name');
       $table->string('email')->unique();
-      $table->boolean('is_verified')->default(false);
-      $table->string('user_account_name')->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();
       $table->timestamps();
+    });
+
+    Schema::create('user_bank_details', function (Blueprint $table) {
+      $table->id();
+      $table->unsignedBigInteger('user_id');
+      $table->string('user_account_name');
+      $table->string('user_account_number');
+      $table->string('user_bank_code');
+      $table->timestamps();
+
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     });
   }
 
