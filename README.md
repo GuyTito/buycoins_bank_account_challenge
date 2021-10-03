@@ -20,6 +20,11 @@ cd buycoins_bank_account_challenge
 composer install
 ```
 
+## Install dependencies
+```
+npm install
+```
+
 ## Create .env
 ```
 copy .env.example .env
