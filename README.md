@@ -19,8 +19,6 @@ cd buycoins_bank_account_challenge
 ```
 composer install
 ```
-
-## Install dependencies
 ```
 npm install
 ```
