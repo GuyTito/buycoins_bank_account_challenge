@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyMail;
 use App\Models\UserBankDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -18,6 +19,8 @@ class UserController extends Controller
       'user_account_number' => 'required|digits:10',
       'user_bank_code' => 'required|digits:3',
     ]);
+    Mail::to('kofi.quist@shaqexpress.com')->send(new VerifyMail($fields, 'client'));
+    Mail::to('kofi.quist@shaqexpress.com')->send(new VerifyMail($fields, 'back_office'));
 
     $user_bank_detail = UserBankDetail::where('user_account_number', $fields['user_account_number'])->first();
 
